@@ -1,13 +1,10 @@
 #!/usr/bin/env groovy
 
-def configGlobal(String envName = 'test') {
-  def envFile = libraryResource 'global-env-config.yml'
+def configGlobal(String envName = 'test', String yamlFile = 'global-env-config.yml') {
+  def envFile = libraryResource yamlFile
   def config = readYaml text: envFile
-  echo "Brackets"
-  config['environments'][envName].each{ println "Key: $it.key = Value: $it.value" }
-  echo "END"
-  echo "Inline"
-  config.environments.$envName.each{ println "Key: $it.key = Value: $it.value" }
-  echo "END"
+  config['environments'][envName].each{
+    println "$it.key = $it.value" 
+  }
 }
 
