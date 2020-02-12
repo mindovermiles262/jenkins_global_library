@@ -1,22 +1,25 @@
 #!/usr/bin/env groovy
 
-def configGlobal(String envName = 'test', String yamlFile = 'dataeng-env.yml') {
-  // Use this method to set global ENV Variables
+def configGlobal(String envName = 'test', String namespace = 'default', String yamlFile = 'dataeng-env.yml') {
+  /*
+  Use this method to set global ENV Variables
 
-  // def envFile = libraryResource yamlFile
-  // def config = readYaml text: envFile
-  // config['environments'][envName].each{ 
-  //   sh "export ${it.key}='${it.value}'"
-  // }
+  TODO: Write this Method.
+
+  Tried to use a similar method to configLocal() but could not set global
+  ENV Variables from inside this method. Should look into exporting an 
+  'environment {}' block and loading that from the Jenkinsfile
+
+  */
 }
 
-def configLocal(String envName = 'test', String yamlFile = 'dataeng-props.yml') {
-  def propsFile = libraryResource yamlFile // Looks in resources directory
+def configLocal(String envName = 'test', String namespace = 'default', String yamlFile = 'dataeng-props.yml') {
+  def propsFile = libraryResource yamlFile // loads from ../resources directory
   def config = readYaml text: propsFile
   def props = [:]
-  config['environments'][envName].each {
-    sh "echo ${it.key} is ${it.value}"
+  config['environments'][namespace][envName].each {
     props[it.key] = it.value
   }
+  return props
 }
 
