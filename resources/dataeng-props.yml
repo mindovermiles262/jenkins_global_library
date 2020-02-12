@@ -1,0 +1,7 @@
+environments:
+  test:
+    prop1: "test-1"
+    prop2: "test-2"
+  staging:
+    prop1: "staging-1"
+
