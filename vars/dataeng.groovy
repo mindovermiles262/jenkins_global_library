@@ -5,8 +5,10 @@ def configGlobal(String envName = 'test') {
   def config = readYaml text: envFile
   echo "Config:"
   echo config
-  def envObj = config.environments.find{it.name == envName}
+  echo "END"
+  def envObj = config.environments.envName
   echo "envObj"
   echo envObj
+  echo "END"
 }
 
