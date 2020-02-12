@@ -11,3 +11,7 @@ Checks that you've configured your Jenkins instance to load global libraries
 def call(String noun = 'Groovy') {
   echo "Hello ${noun}"
 }
+
+def flyAway() {
+  echo "Fly Away Birdie"
+}
