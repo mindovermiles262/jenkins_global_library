@@ -20,6 +20,11 @@ pipeline {
       steps {
         blueSky("Freedom")  //=> "Hello Freedom"
         blueSky("World")    //=> "Hello World"
+        script {
+          // Named methods need to be in a script{} block or Jenkins will throw 
+          // and error. Boo! 👎
+          blueSky.flyAway() //=> "Fly Away Birdie"
+        }
       }
     }
   }
