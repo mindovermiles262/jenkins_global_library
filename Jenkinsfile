@@ -16,10 +16,14 @@ pipeline {
     }
   }
   stages {
-    stage('Clean Air Test') {
+    stage('JGL Shared Methods') {
       steps {
         blueSky("Freedom")  //=> "Hello Freedom"
         blueSky("World")    //=> "Hello World"
+      }
+    }
+    stage('JGL Named Functions') {
+      steps {
         script {
           // Named methods need to be in a script{} block or Jenkins will throw 
           // and error. Boo! 👎
