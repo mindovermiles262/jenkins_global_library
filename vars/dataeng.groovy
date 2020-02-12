@@ -3,8 +3,8 @@
 def configGlobal(String envName = 'test', String yamlFile = 'global-env-config.yml') {
   def envFile = libraryResource yamlFile
   def config = readYaml text: envFile
-  config['environments'][envName].each{ -> it
-    env.$it.key=$it.value
-  }
+  config['environments'][envName].each{ 
+  println "${it.key} = ${it.value}"
+  // env.it.key = $it.value }
 }
 
