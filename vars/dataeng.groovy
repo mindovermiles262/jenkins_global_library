@@ -5,7 +5,7 @@ def configGlobal(String envName = 'test', String yamlFile = 'global-env-config.y
   def config = readYaml text: envFile
   config['environments'][envName].each{ 
   println "${it.key} = ${it.value}"
-  // env.it.key = $it.value 
+  env.${it.key} = ${it.value} 
   }
 }
 
