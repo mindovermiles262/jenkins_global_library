@@ -14,9 +14,6 @@ def configGlobal(String envName = 'test', String namespace = 'default', String y
 }
 
 def configLocal(String envName = 'test', String namespace = 'default', String yamlFile = 'dataeng-props.yml') {
-  echo "configLocal() envName is ${envName}"
-  echo "configLocal() namespace is ${namespace}"
-  echo "configLocal() yamlFile is ${yamlFile}"
   def propsFile = libraryResource yamlFile // loads from ../resources directory
   def config = readYaml text: propsFile
   def props = [:]
