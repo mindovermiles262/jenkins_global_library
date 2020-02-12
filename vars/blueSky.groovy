@@ -8,6 +8,6 @@ Checks that you've configured your Jenkins instance to load global libraries
  "Hello Groovy" if everything is working and there is clear air to continue
 */
 
-def helloNoun(String noun = 'Groovy') {
+def call(String noun = 'Groovy') {
   echo "Hello ${noun}"
 }
