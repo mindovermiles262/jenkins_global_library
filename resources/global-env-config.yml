@@ -1,4 +1,7 @@
 environments:
   test:
-    var1: "value-1"
-    var2: "value-2"
+    var1: "test-1"
+    var2: "test-2"
+  staging:
+    var1: "staging-1"
+
