@@ -3,7 +3,6 @@
 def configGlobal(String envName = 'test') {
   def envFile = libraryResource 'global-env-config.yml'
   def config = readYaml text: envFile
-  def thisEnv = config.environments.${envName}
-  echo thisEnv.var1
+  def thisEnv = config.environments.test.each{ println "Key: $it.key = Value: $it.value" }
 }
 
