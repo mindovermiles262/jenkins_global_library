@@ -20,7 +20,7 @@ def configLocal(String envName = 'test', String namespace = 'default', String ya
   def propsFile = libraryResource yamlFile // loads from ../resources directory
   def config = readYaml text: propsFile
   def props = [:]
-  config['environments'][namespace][envName].each {
+  config['environments'][envName][namespace].each {
     props[it.key] = it.value
   }
   return props
