@@ -1,5 +1,7 @@
 #!/usr/bin/env groovy
 
+import java.util.regex.Pattern
+
 def configGlobal(String envName = 'test', String namespace = 'default', String yamlFile = 'dataeng-env.yml') {
   /*
   Use this method to set global ENV Variables
@@ -27,7 +29,6 @@ def configLocal(String envName = 'test', String namespace = 'default', String ya
 def verifyBranch(String branchName,
                  String regexPattern = "/feature.*/") {
                  // String regexPattern = "(^master\$|^feature.*)") {
-  import java.util.regex.Pattern
   if(branchName ==~ Pattern.compile(regexPattern)) {
     println "Branch ${branchName} is valid"
   } else {
