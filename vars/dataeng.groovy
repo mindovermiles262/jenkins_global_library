@@ -31,5 +31,6 @@ def verifyBranch(String branchName) {
     echo validBranch
   } catch(Exception e) {
     println "Inside Catch"
+    println e
   }
 }
