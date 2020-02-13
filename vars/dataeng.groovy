@@ -28,7 +28,7 @@ def verifyBranch(String branchName) {
   echo branchName
   try {
     def validBranch = branchName ==~ /(^master$|^feature\/.*)/
-    echo validBranch
+    println validBranch
   } catch(Exception e) {
     println "Inside Catch"
     println e
