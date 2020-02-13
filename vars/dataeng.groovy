@@ -30,6 +30,7 @@ def verifyBranch(String branchName,
     println "Branch ${branchName} is valid"
   } else {
     println "Branch ${branchName} is INVALID"
+    println "REGEX: ${regexPattern}"
     // error('[FAIL] Branch is Invalid')
   }
 }
