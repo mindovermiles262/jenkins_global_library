@@ -26,4 +26,10 @@ def configLocal(String envName = 'test', String namespace = 'default', String ya
 
 def verifyBranch(String branchName) {
   echo branchName
+  try {
+    def validBranch = branchName ==~ /(^master$|^feature\/.*)/
+    echo validBranch
+  } catch {
+    echo "Inside Catch"
+  }
 }
