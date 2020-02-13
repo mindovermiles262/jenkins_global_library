@@ -1,0 +1,23 @@
+// Example Jenkinsfile for the dataeng.verifyBranch() method
+
+@Library('my-jgl') _
+
+pipeline {
+  agent any
+  stages {
+    stage('Valid Branch') {
+      steps {
+        script {
+            dataeng.verifyBranch("feature/xyz") //=> Passes
+        }
+      }
+    }
+    stage('Invalid Branch') {
+      steps {
+        script {
+            dataeng.verifyBranch("mybranch") //=> Fails
+        }
+      }
+    }      
+  }
+}

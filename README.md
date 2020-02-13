@@ -2,6 +2,10 @@
 
 A collection of useful libraries for Jenkins.
 
+## Gotcha's
+
+* Jenkins Plugin [Pipeline Utility Steps](https://plugins.jenkins.io/pipeline-utility-steps/) needs to be installed for `readYaml` function to work in `vars/dataeng.groovy`
+
 ## Loading this Library
 
 You can add this library to your Jenkins instance by logging into your Jenkins admin portal. Then do the following:

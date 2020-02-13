@@ -1,0 +1,16 @@
+@Library('my-jgl') _
+
+pipeline {
+  agent any
+  stages {
+    stage('Load Props') {
+      steps {
+        script {
+          def props = dataeng.configLocal('staging')
+          sh "echo 'JF All Props: $props'"
+          sh "echo 'FJ 1st Prop: $props.prop1'"
+        }
+      }
+    }
+  }
+}
