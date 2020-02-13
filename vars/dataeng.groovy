@@ -23,3 +23,7 @@ def configLocal(String envName = 'test', String namespace = 'default', String ya
   return props
 }
 
+
+def verifyBranch(String branchName) {
+  echo branchName
+}
