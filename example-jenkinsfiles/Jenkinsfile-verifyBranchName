@@ -38,11 +38,8 @@ pipeline {
         withEnv(["BRANCH_NAME=mybranch"]) {
           script {
             echo "Branch (via ENV): ${env.BRANCH_NAME}"
-            try {
-              dataeng.verifyBranchName()
-                //=> [F] Catch: hudson.AbortException: [FAILED] Branch mybranch is INVALID
-            } catch(err) {
-              echo "[F] Catch: ${err}"
+            catchError {
+              dataeng.verifyBranchName() //=> ERROR: [FAILED] Branch mybranch is INVALID
             }
           }
         }
@@ -53,11 +50,8 @@ pipeline {
         withEnv(["BRANCH_NAME=master"]) {
           script {
             echo "Branch (via ENV): ${env.BRANCH_NAME}"
-            try {
-              dataeng.verifyBranchName("feature.*")
-                //=> [F] Catch: hudson.AbortException: [FAILED] Branch master is INVALID
-            } catch(err) {
-              echo "[F] Catch: ${err}"
+            catchError {
+              dataeng.verifyBranchName("feature.*") //=> ERROR: [FAILED] Branch master is INVALID
             }
           }
         }
