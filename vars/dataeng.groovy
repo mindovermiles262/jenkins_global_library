@@ -31,7 +31,7 @@ def configLocal(String envName = 'test',
 
 
 def verifyBranch(String branchName,
-                 String regexPattern = "/feature.*/") {
+                 String regexPattern = "feature.*") {
                  // String regexPattern = "(^master\$|^feature.*)") {
   if(branchName ==~ /${regexPattern}/) {
     println "Branch ${branchName} is valid"
