@@ -1,7 +1,5 @@
 #!/usr/bin/env groovy
 
-import java.util.regex.Pattern
-
 def configGlobal(String envName = 'test',
                  String namespace = 'default',
                  String yamlFile = 'dataeng-env.yml') {
