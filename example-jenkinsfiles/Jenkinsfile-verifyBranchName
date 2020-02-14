@@ -6,8 +6,10 @@ pipeline {
     stage('Valid Branches') {
       steps {
         withEnv(["BRANCH_NAME=feature/xyz"]) {
-          echo "Branch (via ENV): ${env.BRANCH_NAME}"
-          dataeng.verifyBranchName()          //=> Branch feature/xyz is valid
+          script {
+            echo "Branch (via ENV): ${env.BRANCH_NAME}"
+            dataeng.verifyBranchName()          //=> Branch feature/xyz is valid
+          }
         }
       }
     }
