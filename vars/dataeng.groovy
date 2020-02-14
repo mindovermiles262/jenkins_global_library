@@ -48,6 +48,6 @@ def verifyBranchName(String regexPattern = "(^master\$|^feature/.*|^develop\$)")
 }
 
 def unitTest() {
-  echo "$(ip a)"
-  echo "$(uname -a)"
+  echo "\$(ip a)"
+  echo "\$(uname -a)"
 }
