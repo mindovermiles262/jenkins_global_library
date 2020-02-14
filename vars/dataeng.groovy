@@ -48,14 +48,14 @@ def verifyBranchName(String regexPattern = "(^master\$|^feature/.*|^develop\$)")
 }
 
 def unitTest() {
-  agent {
-    kubernetes {
-      containerTemplate {
-        name 'mypy'
-        image 'python:3.7-alpine'
-      }
-    }
-  }
+  // agent {
+  //   kubernetes {
+  //     containerTemplate {
+  //       name 'mypy'
+  //       image 'python:3.7-alpine'
+  //     }
+  //   }
+  // }
   stage ('Run Command') {
     steps {
       script {
