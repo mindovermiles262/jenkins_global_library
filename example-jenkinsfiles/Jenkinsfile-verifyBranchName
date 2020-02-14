@@ -23,6 +23,16 @@ pipeline {
         }
       }
     }
+    stage('Valid Develop Branch') {
+      steps {
+        withEnv(["BRANCH_NAME=develop"]) {
+          script {
+            echo "Branch (via ENV): ${env.BRANCH_NAME}"
+            dataeng.verifyBranchName()    //=> Branch develop is valid
+          }
+        }
+      }
+    }
     stage('Valid Custom Branch') {
       steps {
         withEnv(["BRANCH_NAME=paulbunyan"]) {
@@ -54,6 +64,13 @@ pipeline {
               dataeng.verifyBranchName("feature.*") //=> ERROR: [FAILED] Branch master is INVALID
             }
           }
+        }
+      }
+    }
+    stage('No BRANCH_NAME') {
+      steps {
+        script {
+          dataeng.verifyBranchName()
         }
       }
     }
