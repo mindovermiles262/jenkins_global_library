@@ -6,10 +6,6 @@ pipeline {
         name 'my-groovy'
         image 'groovy'
       }
-      containerTemplate {
-        name 'python-testing'
-        image 'python'
-      }
     }
   }
   stages {
