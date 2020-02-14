@@ -3,12 +3,62 @@
 pipeline {
   agent any
   stages {
-    stage('Valid Branches') {
+    stage('Valid Feature Branch') {
       steps {
         withEnv(["BRANCH_NAME=feature/xyz"]) {
           script {
             echo "Branch (via ENV): ${env.BRANCH_NAME}"
-            dataeng.verifyBranchName()          //=> Branch feature/xyz is valid
+            dataeng.verifyBranchName()    //=> Branch feature/xyz is valid
+          }
+        }
+      }
+    }
+    stage('Valid Master Branch') {
+      steps {
+        withEnv(["BRANCH_NAME=master"]) {
+          script {
+            echo "Branch (via ENV): ${env.BRANCH_NAME}"
+            dataeng.verifyBranchName()    //=> Branch master is valid
+          }
+        }
+      }
+    }
+    stage('Valid Custom Branch') {
+      steps {
+        withEnv(["BRANCH_NAME=paulbunyan"]) {
+          script {
+            echo "Branch (via ENV): ${env.BRANCH_NAME}"
+            dataeng.verifyBranchName("paul.*")    //=> Branch paulbunyan is valid
+          }
+        }
+      }
+    }
+    stage('Invalid Branch Name') {
+      steps {
+        withEnv(["BRANCH_NAME=mybranch"]) {
+          script {
+            echo "Branch (via ENV): ${env.BRANCH_NAME}"
+            try {
+              dataeng.verifyBranchName()
+                //=> [F] Catch: hudson.AbortException: [FAILED] Branch mybranch is INVALID
+            } catch(err) {
+              echo "[F] Catch: ${err}"
+            }
+          }
+        }
+      }
+    }
+    stage('Invalid Branch Name with Custom Regex') {
+      steps {
+        withEnv(["BRANCH_NAME=master"]) {
+          script {
+            echo "Branch (via ENV): ${env.BRANCH_NAME}"
+            try {
+              dataeng.verifyBranchName("feature.*")
+                //=> [F] Catch: hudson.AbortException: [FAILED] Branch master is INVALID
+            } catch(err) {
+              echo "[F] Catch: ${err}"
+            }
           }
         }
       }
