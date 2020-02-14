@@ -46,3 +46,21 @@ def verifyBranchName(String regexPattern = "(^master\$|^feature/.*|^develop\$)")
     error("[FAILED] Branch ${env.BRANCH_NAME} is INVALID")
   }
 }
+
+def unitTest() {
+  agent {
+    kubernetes {
+      containerTemplate {
+        name 'mypy'
+        image 'python:3.7-alpine'
+      }
+    }
+  }
+  stage ('Run Command') {
+    steps {
+      script {
+        echo "Running . . ." 
+      }
+    }
+  }
+}
