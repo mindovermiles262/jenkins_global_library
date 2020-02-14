@@ -39,3 +39,10 @@ def verifyBranch(String branchName,
   }
 }
 
+def verifyBranchName(String regexPattern = "(^master\$|^feature/.*)") {
+  if(branchName ==~ /${regexPattern}/) {
+    println "Branch ${branchName} is valid"
+  } else {
+    error("[FAILED] Branch ${branchName} is INVALID")
+  }
+}

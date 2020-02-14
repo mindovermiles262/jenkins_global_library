@@ -1,21 +1,22 @@
-// Example Jenkinsfile for the dataeng.verifyBranch() method
-
 @Library('my-jgl') _
 
 pipeline {
   agent any
   stages {
-    stage('Valid Branch') {
+    stage('Valid Branches') {
       steps {
         script {
-            dataeng.verifyBranch("feature/xyz") //=> Passes
+            dataeng.verifyBranch("feature/xyz")          //=> Branch feature/xyz is valid
+            dataeng.verifyBranch("master")               //=> Branch master is valid
+            dataeng.verifyBranch("paulbunyan", "paul.*") //=> Branch paulbunyan is valid
         }
       }
     }
     stage('Invalid Branch') {
       steps {
         script {
-            dataeng.verifyBranch("mybranch") //=> Fails
+            dataeng.verifyBranch("mybranch")            //=> [FAILED] Branch mybranch is INVALID, REGEX: (^master$|^feature/.*)
+            dataeng.verifyBranch("master", "feature.*") //=> [FAILED] Branch master is INVALID, REGEX: feature.*
         }
       }
     }      
