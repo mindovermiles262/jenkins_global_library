@@ -11,11 +11,8 @@ pipeline {
   stages {
     stage('JGL Shared Methods') {
     agent {
-      kubernetes {
-        containerTemplate {
-          name 'my-python'
-          image 'python:3.7-alpine'
-        }
+      docker {
+        image 'python:3.7-alpine'
       }
     }
       steps {
