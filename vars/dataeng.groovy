@@ -2,7 +2,9 @@
 
 import java.util.regex.Pattern
 
-def configGlobal(String envName = 'test', String namespace = 'default', String yamlFile = 'dataeng-env.yml') {
+def configGlobal(String envName = 'test',
+                 String namespace = 'default',
+                 String yamlFile = 'dataeng-env.yml') {
   /*
   Use this method to set global ENV Variables
 
@@ -15,7 +17,9 @@ def configGlobal(String envName = 'test', String namespace = 'default', String y
   */
 }
 
-def configLocal(String envName = 'test', String namespace = 'default', String yamlFile = 'dataeng-props.yml') {
+def configLocal(String envName = 'test',
+                String namespace = 'default',
+                String yamlFile = 'dataeng-props.yml') {
   def propsFile = libraryResource yamlFile // loads from ../resources directory
   def config = readYaml text: propsFile
   def props = [:]
@@ -29,7 +33,7 @@ def configLocal(String envName = 'test', String namespace = 'default', String ya
 def verifyBranch(String branchName,
                  String regexPattern = "/feature.*/") {
                  // String regexPattern = "(^master\$|^feature.*)") {
-  if(branchName ==~ Pattern.compile(regexPattern)) {
+  if(branchName ==~ /${regexPattern}/) {
     println "Branch ${branchName} is valid"
   } else {
     println "Branch ${branchName} is INVALID"
