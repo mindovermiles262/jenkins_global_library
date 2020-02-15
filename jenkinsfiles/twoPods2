@@ -7,7 +7,7 @@ pipeline {
     stage("Alpine Test") {
       agent {
         kubernetes {
-         yaml readYaml(file: './pod-alpine.yml')
+         yaml: readYaml(file: './pod-alpine.yml')
         }
       }
       steps {
