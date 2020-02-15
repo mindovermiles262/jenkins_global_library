@@ -1,0 +1,23 @@
+@Library('my-jgl') _
+
+pipeline {
+  agent {
+    kubernetes {
+      containerTemplate {
+        name 'my-container'
+        image 'alpine:latest'
+        label 'alpine-container'
+        command 'cat'
+        ttyEnabled true
+      }
+    }
+  }
+  node('alpine-container') {
+    stage("Smoke Test") {
+      container('my-container') {
+        sh pwd
+      }
+    }
+  }
+}
+
