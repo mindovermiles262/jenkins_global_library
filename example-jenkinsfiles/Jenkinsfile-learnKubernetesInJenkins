@@ -15,9 +15,8 @@ pipeline {
   stages {
     stage("Smoke Test") {
       steps {
-        sh "hostname"
-        sh "ip a"
         sh "printenv"
+        sh "cat /etc/*-release"
       }
     }
   }
