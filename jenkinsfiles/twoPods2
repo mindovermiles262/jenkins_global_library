@@ -1,7 +1,26 @@
-@Library('my-jgl') _
+/*
+
+====================
+==== twoPods v2 ====
+====================
+
+Exploring the use of:
+
+* Loading YAML files as kubernetes pod agent templates
+* Agent precedence => Is the top-level agent declaration stronger than an
+  agent declaration inside of a step?
+
+This example Jenkinsfile shows how agents are inherited while using 
+Kubernetes and Jenkins together.  The top-level agent declaration is set
+to use an Ubuntu container image. There is a second agent declaration inside
+of the third stage which creates an Alpine Linux image.
+
+Suprisingly, the more nested agent call takes precedence over the top-level
+agent.
+
+*/
 
 pipeline {
-  // agent must be declared right after pipeline so it doesnt throw an error
   agent {
     kubernetes {
       yamlFile 'resources/pod-ubuntu.yml'
