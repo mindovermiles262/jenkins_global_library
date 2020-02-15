@@ -6,17 +6,28 @@ pipeline {
       containerTemplate {
         name 'my-container'
         image 'alpine:latest'
-        label 'alpine-container'
+        command 'cat'
+        ttyEnabled true
+      }
+      containerTemplate {
+        name 'my-other-container'
+        image 'busybox:latest'
         command 'cat'
         ttyEnabled true
       }
     }
   }
   stages {
-    stage("Smoke Test") {
+    stage("Alpine Test") {
       steps {
         container('my-container') {
-          sh "printenv"
+          sh "cat /etc/*-release"
+        }
+      }
+    }
+    stage("Busybox Test") {
+      steps {
+        container('my-other-container') {
           sh "cat /etc/*-release"
         }
       }
