@@ -13,10 +13,12 @@ pipeline {
     }
   }
   stages {
-    stage("Smoke Test") {
-      steps {
-        sh "printenv"
-        sh "cat /etc/*-release"
+    container('alpine-container') {
+      stage("Smoke Test") {
+        steps {
+          sh "printenv"
+          sh "cat /etc/*-release"
+        }
       }
     }
   }
