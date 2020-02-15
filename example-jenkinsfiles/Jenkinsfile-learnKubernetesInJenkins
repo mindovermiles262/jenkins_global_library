@@ -44,11 +44,11 @@ spec:
   stages {
     stage("Alpine Test") {
       steps {
-        container('my-container') {
+        container('my-alpine-container') {
           sh "printenv"
           sh "cat /etc/*-release"
         }
-        container('my-other-container') {
+        container('my-busybox-container') {
           sh "cat /etc/*-release"
         }
       }
