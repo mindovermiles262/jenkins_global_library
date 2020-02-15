@@ -14,8 +14,8 @@ pipeline {
   }
   stages {
     stage('JGL Shared Methods') {
-      container('my-unit-testing')
       steps {
+        container('my-unit-testing')
         script {
           dataeng.unitTest()
         }
