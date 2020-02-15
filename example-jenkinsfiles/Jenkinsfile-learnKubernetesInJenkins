@@ -14,7 +14,9 @@ pipeline {
   }
   stages {
     stage("Smoke Test") {
-      sh pwd
+      step{
+        sh pwd
+      }
     }
   }
 }
