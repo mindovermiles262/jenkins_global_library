@@ -10,7 +10,7 @@ pipeline {
   stages {
     stage("First No-Container Test") {
       steps {
-        sh "cat /etc/*-release"
+        sh "cat /etc/*-release"             //=> Alpine
       }
     }
     stage("Alpine Test") {
@@ -21,20 +21,20 @@ pipeline {
       }
       steps {
         container('my-alpine-container') {
-          sh "cat /etc/*-release"
+          sh "cat /etc/*-release"           //=> Alpine
         }
       }
     }
     stage("Ubuntu Container Test") {
       steps {
         container('my-ubuntu-container') {
-          sh "cat /etc/*-release"
+          sh "cat /etc/*-release"           //=> Ubuntu
         }
       }
     }
     stage("Second No-Container Test") {
       steps {
-        sh "cat /etc/*-release"
+        sh "cat /etc/*-release"             //=> Alpine
       }
     }
   }
