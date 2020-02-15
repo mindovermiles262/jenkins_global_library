@@ -29,7 +29,8 @@ pipeline {
   stages {
     stage("First No-Container Test") {
       steps {
-        sh "cat /etc/*-release"             //=> Alpine
+        echo "First No-Container Test"
+        sh "cat /etc/*-release | grep NAME"             //=> Alpine
       }
     }
     stage("Alpine Test") {
@@ -40,20 +41,23 @@ pipeline {
       }
       steps {
         container('my-alpine-container') {
-          sh "cat /etc/*-release"           //=> Alpine
+          echo "Alpine Container"
+          sh "cat /etc/*-release | grep NAME"             //=> Alpine
         }
       }
     }
     stage("Ubuntu Container Test") {
       steps {
         container('my-ubuntu-container') {
-          sh "cat /etc/*-release"           //=> Ubuntu
+          echo "Ubuntu Container"
+          sh "cat /etc/*-release | grep NAME"           //=> Ubuntu
         }
       }
     }
     stage("Second No-Container Test") {
       steps {
-        sh "cat /etc/*-release"             //=> Alpine
+        echo "Second No-Container Test"
+        sh "cat /etc/*-release | grep NAME"             //=> Alpine
       }
     }
   }
