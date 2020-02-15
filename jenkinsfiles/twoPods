@@ -1,9 +1,11 @@
 @Library('my-jgl') _
 
 pipeline {
-  agent {
-    kubernetes {
-      yaml """
+  stages {
+    stage("Alpine Test") {
+      agent {
+        kubernetes {
+          yaml """
 apiVersion: v1
 kind: Pod
 metadata:
@@ -17,39 +19,10 @@ spec:
     - cat
     tty: true
 """
-    }
-  }
-  stages {
-    stage("Alpine Test") {
-      steps {
-        container('my-alpine-container') {
-          sh "cat /etc/*-release"
         }
       }
-    }
-  }
-  agent {
-    kubernetes {
-      yaml """
-apiVersion: v1
-kind: Pod
-metadata:
-  labels:
-    project: jenkins-global-lib
-spec:
-  containers:
-  - name: my-ubuntu-container
-    image: ubuntu
-    command:
-    - cat
-    tty: true
-"""
-    }
-  }
-  stages {
-    stage("Ubuntu Test") {
       steps {
-        container('my-ubuntu-container') {
+        container('my-alpine-container') {
           sh "cat /etc/*-release"
         }
       }
