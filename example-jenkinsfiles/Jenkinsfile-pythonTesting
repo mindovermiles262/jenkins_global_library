@@ -3,10 +3,6 @@ pipeline {
   agent {
     kubernetes {
       containerTemplate {
-        name 'my-groovy'
-        image 'groovy'
-      }
-      containerTemplate {
         name 'my-unit-testing'
         image 'python:3.7-alpine'
       }
