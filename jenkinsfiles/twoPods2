@@ -1,0 +1,35 @@
+@Library('my-jgl') _
+
+pipeline {
+  // agent must be declared right after pipeline so it doesnt throw an error
+  agent none
+  stages {
+    stage("Alpine Test") {
+      agent {
+        kubernetes {
+          podTemplate(yaml: readYaml(file: './pod-alpine.yml'))
+        }
+      }
+      steps {
+        container('my-alpine-container') {
+          sh "cat /etc/*-release"
+        }
+      }
+    }
+    /*
+    stage("Ubuntu Test") {
+      agent {
+        kubernetes {
+          yaml 
+        }
+      }
+      steps {
+        container('my-ubuntu-container') {
+          sh "cat /etc/*-release"
+        }
+      }
+    }
+    */
+  }
+}
+

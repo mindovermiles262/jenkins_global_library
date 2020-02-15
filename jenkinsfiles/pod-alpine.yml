@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    project: jenkins-global-lib
+spec:
+  containers:
+  - name: my-alpine-container
+    image: alpine
+    command:
+    - cat
+    tty: true
