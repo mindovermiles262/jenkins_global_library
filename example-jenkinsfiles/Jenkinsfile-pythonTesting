@@ -6,19 +6,18 @@ pipeline {
         name 'my-groovy'
         image 'groovy'
       }
+      containerTemplate {
+        name 'my-unit-testing'
+        image 'python:3.7-alpine'
+      }
     }
   }
   stages {
     stage('JGL Shared Methods') {
-    agent {
-      docker {
-        image 'python:3.7-alpine'
-      }
-    }
-      steps {
-        script {
-          dataeng.unitTest()
-        }
+    container('my-unit-testing')
+    steps {
+      script {
+        dataeng.unitTest()
       }
     }
   }
