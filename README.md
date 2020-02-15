@@ -45,3 +45,9 @@ https://jenkins.io/doc/book/pipeline/shared-libraries/
 
 * Example Shared Library Tutorial: 
 https://tomd.xyz/jenkins-shared-library/
+
+* Using `container` directives in a pipeline (w/ examples):
+https://akomljen.com/set-up-a-jenkins-ci-cd-pipeline-with-kubernetes/
+
+* Kubernetes Plugin for Jenkins:
+https://github.com/jenkinsci/kubernetes-plugin
