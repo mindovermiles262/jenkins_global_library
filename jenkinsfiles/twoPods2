@@ -8,6 +8,11 @@ pipeline {
     }
   }
   stages {
+    stage("First No-Container Test") {
+      steps {
+        sh "cat /etc/*-release"
+      }
+    }
     stage("Alpine Test") {
       agent {
         kubernetes {
@@ -27,7 +32,7 @@ pipeline {
         }
       }
     }
-    stage("Ubuntu Test") {
+    stage("Second No-Container Test") {
       steps {
         sh "cat /etc/*-release"
       }
