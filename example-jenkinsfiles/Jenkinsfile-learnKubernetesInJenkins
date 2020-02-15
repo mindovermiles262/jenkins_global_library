@@ -15,7 +15,7 @@ pipeline {
   stages {
     stage("Smoke Test") {
       steps {
-        container('alpine-container') {
+        container('my-container') {
           sh "printenv"
           sh "cat /etc/*-release"
         }
