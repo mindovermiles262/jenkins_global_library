@@ -3,24 +3,7 @@
 pipeline {
   agent {
     kubernetes {
-    /*
-    It is necessary to use YAML here. containerTemplates do not work
-    as they override themselves.
-
-      containerTemplate {
-        name 'my-container'
-        image 'alpine:latest'
-        command 'cat'
-        ttyEnabled true
-      }
-      containerTemplate {
-        name 'my-other-container'
-        image 'busybox:latest'
-        command 'cat'
-        ttyEnabled true
-      }
-    */
-    yaml """
+      yaml """
 apiVersion: v1
 kind: Pod
 metadata:
@@ -33,6 +16,28 @@ spec:
     command:
     - cat
     tty: true
+"""
+    }
+  }
+  stages {
+    stage("Alpine Test") {
+      steps {
+        container('my-alpine-container') {
+          sh "cat /etc/*-release"
+        }
+      }
+    }
+  }
+  agent {
+    kubernetes {
+      yaml """
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    project: jenkins-global-lib
+spec:
+  containers:
   - name: my-ubuntu-container
     image: ubuntu
     command:
@@ -42,12 +47,8 @@ spec:
     }
   }
   stages {
-    stage("Alpine Test") {
+    stage("Ubuntu Test") {
       steps {
-        container('my-alpine-container') {
-          sh "printenv"
-          sh "cat /etc/*-release"
-        }
         container('my-ubuntu-container') {
           sh "cat /etc/*-release"
         }
