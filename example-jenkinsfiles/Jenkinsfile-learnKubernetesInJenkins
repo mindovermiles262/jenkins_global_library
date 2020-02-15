@@ -12,10 +12,12 @@ pipeline {
       }
     }
   }
-  node('alpine-container') {
-    stage("Smoke Test") {
-      container('my-container') {
-        sh pwd
+  stages {
+    node('alpine-container') {
+      stage("Smoke Test") {
+        container('my-container') {
+          sh pwd
+        }
       }
     }
   }
