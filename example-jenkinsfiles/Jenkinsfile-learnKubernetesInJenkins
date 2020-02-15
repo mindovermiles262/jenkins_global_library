@@ -33,8 +33,8 @@ spec:
     command:
     - cat
     tty: true
-  - name: my-busybox-container
-    image: busybox
+  - name: my-ubuntu-container
+    image: ubuntu
     command:
     - cat
     tty: true
@@ -48,7 +48,7 @@ spec:
           sh "printenv"
           sh "cat /etc/*-release"
         }
-        container('my-busybox-container') {
+        container('my-ubuntu-container') {
           sh "cat /etc/*-release"
         }
       }
