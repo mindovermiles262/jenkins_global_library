@@ -15,8 +15,8 @@ pipeline {
   stages {
     stage("Smoke Test") {
       steps {
-        sh pwd
         sh hostname
+        sh ip a
       }
     }
   }
