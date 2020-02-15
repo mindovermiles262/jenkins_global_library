@@ -14,7 +14,7 @@ pipeline {
   }
   stages {
     stage("Smoke Test") {
-      container('my-container') {
+      node('my-container') {
         sh pwd
       }
     }
