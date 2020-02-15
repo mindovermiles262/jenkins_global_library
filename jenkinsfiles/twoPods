@@ -1,6 +1,7 @@
 @Library('my-jgl') _
 
 pipeline {
+  agent none
   stages {
     stage("Alpine Test") {
       agent {
