@@ -21,12 +21,9 @@ pipeline {
     stage("Alpine Test") {
       steps {
         container('my-container') {
+          sh "printenv"
           sh "cat /etc/*-release"
         }
-      }
-    }
-    stage("Busybox Test") {
-      steps {
         container('my-other-container') {
           sh "cat /etc/*-release"
         }
