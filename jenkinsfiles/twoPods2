@@ -7,7 +7,7 @@ pipeline {
     stage("Alpine Test") {
       agent {
         kubernetes {
-         yamlFile libraryResource('pod-alpine.yml')
+         yamlFile 'resources/pod-alpine.yml'
         }
       }
       steps {
