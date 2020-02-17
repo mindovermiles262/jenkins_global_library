@@ -60,6 +60,7 @@ def unitTest(String unitTestGitUrl,
       container(unitTestContainer) {
         checkout([$class: 'GitSCM', branches: [[name: unitTestGitBranch]],
             userRemoteConfigs: [[url: unitTestGitUrl]]])
+        echo params
         sh "make -f ${unitTestMakefile} test"
       }
     }
