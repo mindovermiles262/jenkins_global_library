@@ -47,13 +47,18 @@ def verifyBranchName(String regexPattern = "(^master\$|^feature/.*|^develop\$)")
   }
 }
 
-def unitTest() {
-  pipeline {
-    container('unit-testing-python') {
-      echo "### UNIT TESTING ###"
-      checkout([$class: 'GitSCM', branches: [[name: '*/master']],
-          userRemoteConfigs: [[url: 'https://github.com/mindovermiles262/jenkins_global_library']]])
-      sh "make -f unitTestingPython/Makefile test"
+def unitTest(String lang == "python") {
+  switch(lang){
+  case("python"):
+    pipeline {
+      container('unit-testing-python') {
+        echo "### UNIT TESTING ###"
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']],
+            userRemoteConfigs: [[url: 'https://github.com/mindovermiles262/jenkins_global_library']]])
+        sh "make -f unitTestingPython/Makefile test"
+      }
     }
+  default:
+    error("[FAIL] Failure inside dataeng.unitTest() switch statement")
   }
 }
