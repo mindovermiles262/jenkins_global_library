@@ -22,6 +22,10 @@ pipeline {
   stages {
     stage("Container in JGL") {
       steps {
+        environment {
+          TEST_GIT_URL = "https://github.com/mindovermiles262/jenkins_global_library"
+          MAKEFILE_PATH = "unitTestingPython/Makefile"
+        }
         script {
           dataeng.unitTest()
         }

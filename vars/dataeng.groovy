@@ -47,15 +47,20 @@ def verifyBranchName(String regexPattern = "(^master\$|^feature/.*|^develop\$)")
   }
 }
 
-def unitTest(String lang = "python") {
+def unitTest(String lang = "python", 
+             String testContainer = "unit-testing-python") {
   switch(lang){
   case("python"):
     pipeline {
-      container('unit-testing-python') {
-        echo "### UNIT TESTING ###"
+      container(testContainer) {
         checkout([$class: 'GitSCM', branches: [[name: '*/master']],
-            userRemoteConfigs: [[url: 'https://github.com/mindovermiles262/jenkins_global_library']]])
-        sh "make -f unitTestingPython/Makefile test"
+            userRemoteConfigs: [[url: env.TEST_GIT_URL]]])
+        if (env.MAKEFILE_PATH) {
+          echo "You've specified the Makefile path: ${env.MAKEFILE_PATH}"
+          sh "make -f unitTestingPython/Makefile test"
+        } else {
+          sh "make test"
+        }
       }
     }
   default:
