@@ -47,23 +47,20 @@ def verifyBranchName(String regexPattern = "(^master\$|^feature/.*|^develop\$)")
   }
 }
 
-def unitTest(String unitTestLanguage = "python", 
+// Runs 'make test' on specified git repository. Defaults to a python testing
+// environment.
+def unitTest(String unitTestGitUrl,
+             String unitTestGitBranch = "*/master"
+             String unitTestMakefile = "./Makefile"
+             String unitTestLanguage = "python", 
              String unitTestContainer = "unit-test-python") {
   switch(unitTestLanguage){
   case("python"):
     pipeline {
       container(unitTestContainer) {
-        checkout([$class: 'GitSCM', branches: [[name: '*/master']],
-            userRemoteConfigs: [[url: env.UNITTEST_GIT_URL]]])
-        if (env.UNITTEST_MAKEFILE_PATH) {
-          echo "Using Makefile specified: ${env.UNITTEST_MAKEFILE_PATH}"
-          sh "make -f ${env.UNITTEST_MAKEFILE_PATH} test"
-        } else {
-          echo "No Makefile Specified. Using default"
-          sh 'ls -l'
-          sh "pwd"
-          sh "make test"
-        }
+        checkout([$class: 'GitSCM', branches: [[name: unitTestGitBranch]],
+            userRemoteConfigs: [[url: unitTestGitUrl]]])
+        sh "make -f ${unitTestMakefile} test"
       }
     }
   default:
