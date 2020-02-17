@@ -47,7 +47,7 @@ def verifyBranchName(String regexPattern = "(^master\$|^feature/.*|^develop\$)")
   }
 }
 
-def unitTest(String lang == "python") {
+def unitTest(String lang = "python") {
   switch(lang){
   case("python"):
     pipeline {
