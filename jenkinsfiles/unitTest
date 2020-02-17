@@ -1,8 +1,6 @@
 @Library('my-jgl') _
 
 pipeline {
-  // agent must be declared right after pipeline so it doesnt throw an error
-  // agent none
   agent {
     kubernetes {
       containerTemplate {
@@ -20,12 +18,13 @@ pipeline {
     }
   }
   stages {
-    stage("Container in JGL") {
+    stage("Unit Testing on external repository") {
       steps {
         script {
           withEnv([
-          'UNITTEST_GIT_URL=https://github.com/mindovermiles262/linuxacademy-ng']) {
-            dataeng.unitTest()
+            'UNITTEST_GIT_URL=https://github.com/mindovermiles262/linuxacademy-ng'
+          ]) {
+            dataeng.unitTest(lang="fail")
           }
         }
       }
