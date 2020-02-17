@@ -60,6 +60,8 @@ def unitTest(String lang = "python",
           sh "make -f ${env.UNITTEST_MAKEFILE_PATH} test"
         } else {
           echo "No Makefile Specified. Using default"
+          sh 'ls -l'
+          sh "pwd"
           sh "make test"
         }
       }
