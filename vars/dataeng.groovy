@@ -49,11 +49,9 @@ def verifyBranchName(String regexPattern = "(^master\$|^feature/.*|^develop\$)")
 
 def unitTest() {
   pipeline {
-    steps {
-      container('my-ubuntu-container') {
-        echo "### Ubuntu ###"
-          sh "cat /etc/*-release"
-      }
+    container('my-ubuntu-container') {
+      echo "### Ubuntu ###"
+      sh "cat /etc/*-release"
     }
   }
 }
