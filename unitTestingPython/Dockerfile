@@ -3,4 +3,6 @@ MAINTAINER Andy Duss github@mindovermiles262
 
 COPY . /build
 RUN pip install -r /build/requirements.txt
-CMD "/bin/bash"
+
+WORKDIR /test
+CMD "make test"
