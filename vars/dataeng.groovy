@@ -51,7 +51,11 @@ def unitTest() {
   pipeline {
     container('unit-testing-python') {
       echo "### UNIT TESTING ###"
-      sh "ls -l /build"
+      sh "pwd"
+      checkout([$class: 'GitSCM', branches: [[name: '*/master']],
+          userRemoteConfigs: [[url: 'https://github.com/mindovermiles262/jenkins_global_library']]])
+      sh "ls -l"
+      sh "pwd"
     }
   }
 }
