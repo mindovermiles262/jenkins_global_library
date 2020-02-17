@@ -19,15 +19,12 @@ pipeline {
       }
     }
   }
-  // TESTING_GIT_URL = "https://github.com/mindovermiles262/jenkins_global_library"
-  // TESTING_MAKEFILE_PATH = "unitTestingPython/Makefile"
   stages {
     stage("Container in JGL") {
       steps {
         script {
           withEnv([
-          'TESTING_GIT_URL=http://github.com/mindovermiles262/jenkins_global_library', 
-          'TESTING_MAKEFILE_PATH=unitTestingPython/Makefile']) {
+          'TESTING_GIT_URL=https://github.com/mindovermiles262/linuxacademy-ng']) {
             dataeng.unitTest()
           }
         }

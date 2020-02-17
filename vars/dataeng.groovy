@@ -54,10 +54,10 @@ def unitTest(String lang = "python",
     pipeline {
       container(testContainer) {
         checkout([$class: 'GitSCM', branches: [[name: '*/master']],
-            userRemoteConfigs: [[url: env.TESTING_GIT_URL]]])
-        if (env.TESTING_MAKEFILE_PATH) {
-          echo "Using Makefile specified: ${env.TESTING_MAKEFILE_PATH}"
-          sh "make -f ${env.TESTING_MAKEFILE_PATH} test"
+            userRemoteConfigs: [[url: env.UNITTEST_GIT_URL]]])
+        if (env.UNITTEST_MAKEFILE_PATH) {
+          echo "Using Makefile specified: ${env.UNITTEST_MAKEFILE_PATH}"
+          sh "make -f ${env.UNITTEST_MAKEFILE_PATH} test"
         } else {
           echo "No Makefile Specified. Using default"
           sh "make test"
