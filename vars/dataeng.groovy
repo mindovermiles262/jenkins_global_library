@@ -48,5 +48,27 @@ def verifyBranchName(String regexPattern = "(^master\$|^feature/.*|^develop\$)")
 }
 
 def unitTest() {
-  println "Unit Test Method"
+  agent {
+    kubernetes {
+      containerTemplate {
+        image 'ubuntu'
+          name 'my-ubuntu-container'
+          ttyEnabled true
+          command 'cat'
+      }
+    }
+  }
+  steps {
+    container('my-ubuntu-container') {
+      echo "### Ubuntu ###"
+        sh "cat /etc/*-release"
+    }
+  }
+
+}
+}
+}
+}
+}
+println "Unit Test Method"
 }

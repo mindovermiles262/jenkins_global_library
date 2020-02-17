@@ -15,33 +15,8 @@ pipeline {
   }
   stages {
     stage("First Test") {
-      steps {
-        echo "### FIRST ###"
-        sh "cat /etc/*-release"
-      }
-    }
-    stage("Ubuntu Test") {
-      agent {
-        kubernetes {
-          containerTemplate {
-            image 'ubuntu'
-            name 'my-ubuntu-container'
-            ttyEnabled true
-            command 'cat'
-          }
-        }
-      }
-      steps {
-        container('my-ubuntu-container') {
-          echo "### Ubuntu ###"
-          sh "cat /etc/*-release"
-        }
-      }
-    }
-    stage("Second Test") {
-      steps {
-        echo "### SECOND ###"  
-        sh "cat /etc/*-release"
+      script {
+        dataeng.unitTest()
       }
     }
   }
