@@ -15,9 +15,7 @@ pipeline {
   }
   stages {
     stage("First Test") {
-      script {
-        dataeng.unitTest()
-      }
+      dataeng.unitTest()
     }
   }
 }
