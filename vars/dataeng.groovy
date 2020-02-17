@@ -48,6 +48,7 @@ def verifyBranchName(String regexPattern = "(^master\$|^feature/.*|^develop\$)")
 }
 
 def unitTest() {
+pipeline{
   agent {
     kubernetes {
       containerTemplate {
@@ -64,4 +65,5 @@ def unitTest() {
         sh "cat /etc/*-release"
     }
   }
+}
 }
