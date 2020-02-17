@@ -47,8 +47,8 @@ def verifyBranchName(String regexPattern = "(^master\$|^feature/.*|^develop\$)")
   }
 }
 
-def unitTest(String lang = "python", 
-             String testContainer = "unit-testing-python") {
+def unitTest(String unitTestLanguage = "python", 
+             String unitTestContainer = "unit-test-python") {
   switch(lang){
   case("python"):
     pipeline {
@@ -67,6 +67,6 @@ def unitTest(String lang = "python",
       }
     }
   default:
-    error("[FAIL] Failure inside dataeng.unitTest() switch statement")
+    error("[!] Unit Testing Language not supported.")
   }
 }
