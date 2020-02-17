@@ -12,8 +12,8 @@ pipeline {
         command 'cat'
       }
       containerTemplate {
-        image 'ubuntu'
-        name 'my-ubuntu-container'
+        image 'mindovermiles262/pytest'
+        name 'unitTestingPython'
         ttyEnabled true
         command 'cat'
       }
