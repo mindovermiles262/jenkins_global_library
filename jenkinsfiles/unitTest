@@ -13,7 +13,7 @@ pipeline {
       }
       containerTemplate {
         image 'mindovermiles262/pytest'
-        name 'unitTestingPython'
+        name 'unit-testing-python'
         ttyEnabled true
         command 'cat'
       }
