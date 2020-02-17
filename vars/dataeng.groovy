@@ -56,7 +56,7 @@ def unitTest(String lang = "python",
         checkout([$class: 'GitSCM', branches: [[name: '*/master']],
             userRemoteConfigs: [[url: env.TESTING_GIT_URL]]])
         if (env.TESTING_MAKEFILE_PATH) {
-          echo "You've specified the Makefile path: ${env.MAKEFILE_PATH}"
+          echo "You've specified the Makefile path: ${env.TESTING_MAKEFILE_PATH}"
           sh "make -f unitTestingPython/Makefile test"
         } else {
           sh "make test"
