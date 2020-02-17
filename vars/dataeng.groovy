@@ -49,7 +49,7 @@ def verifyBranchName(String regexPattern = "(^master\$|^feature/.*|^develop\$)")
 
 def unitTest(String unitTestLanguage = "python", 
              String unitTestContainer = "unit-test-python") {
-  switch(lang){
+  switch(unitTestLanguage){
   case("python"):
     pipeline {
       container(testContainer) {
