@@ -11,6 +11,12 @@ pipeline {
         ttyEnabled true
         command 'cat'
       }
+      containerTemplate {
+        image 'ubuntu'
+        name 'my-ubuntu-container'
+        ttyEnabled true
+        command 'cat'
+      }
     }
   }
   stages {
