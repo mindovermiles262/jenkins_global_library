@@ -31,7 +31,7 @@ pipeline {
       steps {
         script {
           dataeng.unitTest(
-            "http://github.com/mindovermiles262/linuxacademy-ng"
+            "http://github.com/mindovermiles262/linuxacademy-ng", UnitTestGitBranch: "*/fail"
           )
         }
       }
