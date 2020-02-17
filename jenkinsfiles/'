@@ -14,11 +14,11 @@ pipeline {
     }
   }
   stages {
-    stage("Alpine Test") {
+    stage("First Test") {
       steps {
-        container('my-alpine-container') {
+        // container('my-alpine-container') {
           sh "cat /etc/*-release"
-        }
+        // }
       }
     }
     stage("Ubuntu Test") {
