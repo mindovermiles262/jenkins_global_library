@@ -49,11 +49,11 @@ def verifyBranchName(String regexPattern = "(^master\$|^feature/.*|^develop\$)")
 
 // Runs 'make test' on specified git repository. Defaults to a python testing
 // environment.
-def unitTest(String unitTestGitUrl,
+def unitTest([String unitTestGitUrl,
              String unitTestGitBranch = "*/master",
              String unitTestMakefile = "./Makefile",
              String unitTestLanguage = "python", 
-             String unitTestContainer = "unit-test-python") {
+             String unitTestContainer = "unit-test-python"]) {
   switch(unitTestLanguage){
   case("python"):
     pipeline {
