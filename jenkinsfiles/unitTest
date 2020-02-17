@@ -9,12 +9,6 @@ pipeline {
         ttyEnabled true
         command 'cat'
       }
-      containerTemplate {
-        image 'mindovermiles262/pytest:0.1.2'
-        name 'unit-testing-python'
-        ttyEnabled true
-        command 'cat'
-      }
     }
   }
   stages {
@@ -24,6 +18,16 @@ pipeline {
       }
     }
     stage("Unit Testing on external repository") {
+      agent {
+        kubernetes {
+          containerTemplate {
+            image 'mindovermiles262/pytest:0.1.2'
+            name 'unit-test-python'
+            ttyEnabled true
+            command 'cat'
+          }
+        }
+      }
       steps {
         script {
           dataeng.unitTest("http://github.com/mindovermiles262/linuxacademy-ng")
