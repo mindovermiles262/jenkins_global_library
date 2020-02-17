@@ -12,11 +12,11 @@ pipeline {
     }
   }
   stages {
-    stage("First Stage") {
-      steps {
-        sh "cat /etc/*-release"
-      }
-    }
+    // stage("First Stage") {
+    //   steps {
+    //     sh "cat /etc/*-release"
+    //   }
+    // }
     stage("Unit Testing on external repository") {
       agent {
         kubernetes {
