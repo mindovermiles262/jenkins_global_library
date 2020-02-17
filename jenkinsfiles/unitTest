@@ -14,9 +14,11 @@ pipeline {
     }
   }
   stages {
-    stage("First Test") {
+    stage("Container in JGL") {
       steps {
-        dataeng.unitTest()
+        script {
+          dataeng.unitTest()
+        }
       }
     }
   }
