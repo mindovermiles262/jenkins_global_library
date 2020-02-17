@@ -52,7 +52,7 @@ def unitTest(String unitTestLanguage = "python",
   switch(unitTestLanguage){
   case("python"):
     pipeline {
-      container(testContainer) {
+      container(unitTestContainer) {
         checkout([$class: 'GitSCM', branches: [[name: '*/master']],
             userRemoteConfigs: [[url: env.UNITTEST_GIT_URL]]])
         if (env.UNITTEST_MAKEFILE_PATH) {
