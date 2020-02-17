@@ -49,7 +49,7 @@ def verifyBranchName(String regexPattern = "(^master\$|^feature/.*|^develop\$)")
 
 def unitTest() {
   pipeline {
-    container('unitTestingPython') {
+    container('unit-testing-python') {
       echo "### UNIT TESTING ###"
       sh "ls -l /build"
     }
