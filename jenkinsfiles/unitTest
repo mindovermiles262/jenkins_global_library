@@ -15,7 +15,9 @@ pipeline {
   }
   stages {
     stage("First Test") {
-      dataeng.unitTest()
+      steps {
+        dataeng.unitTest()
+      }
     }
   }
 }
