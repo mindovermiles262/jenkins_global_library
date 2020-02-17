@@ -26,8 +26,9 @@ pipeline {
       steps {
         script {
           withEnv(['TESTING_GIT_URL="https://github.com/mindovermiles262/jenkins_global_library"', 
-          'MAKEFILE_PATH=unitTestingPython/Makefile'])
-          dataeng.unitTest()
+          'MAKEFILE_PATH=unitTestingPython/Makefile']) {
+            dataeng.unitTest()
+          }
         }
       }
     }
