@@ -64,11 +64,4 @@ def unitTest() {
         sh "cat /etc/*-release"
     }
   }
-
-}
-}
-}
-}
-}
-println "Unit Test Method"
 }
