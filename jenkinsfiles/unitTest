@@ -25,10 +25,7 @@ pipeline {
       }
       steps {
         script {
-          withEnv([
-            'UNITTEST_GIT_URL=https://github.com/mindovermiles262/linuxacademy-ng'
-          ]) {
-            dataeng.unitTest()
+            dataeng.unitTest("http://github.com/mindovermiles262/linuxacademy-ng")
           }
         }
       }
