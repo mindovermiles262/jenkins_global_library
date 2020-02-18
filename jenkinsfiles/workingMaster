@@ -1,0 +1,33 @@
+pipeline {
+  agent {
+    kubernetes {
+      containerTemplate {
+        name 'alpine'
+        image 'alpine'
+        ttyEnabled true
+        command 'cat'
+      }
+    }
+  }
+  stages {
+    // immediately fail the job when someone is working
+    // with a branch we know nothing about.
+    stage('verify branch') {
+      steps {
+        dataeng.verifyBranchName()
+      }
+    }
+
+    stage('unit test') {
+      steps {
+        dataeng.unitTest(
+          env.GIT_URL,
+          "*/deploy",
+          "Makefile",
+          "python",
+          "unit-test-python-container"
+         )
+      }
+    }
+  }
+}
