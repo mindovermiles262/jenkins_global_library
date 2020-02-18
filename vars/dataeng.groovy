@@ -47,23 +47,24 @@ def verifyBranchName(String regexPattern = "(^master\$|^feature/.*|^develop\$)")
   }
 }
 
-// def overwriteDefaultMap(Map dflt, Map args) {
-//   // do something
-//   returnMap = args.each{ entry -> dflt << [entry.key:entry.value] }
-// }
+def overwriteDefaultMap(Map defaultSettings, Map customSettings) {
+  settings = customSettings.each{ entry -> defaultSettings[entry.key] = entry.value }
+  return settings
+}
 
 // Runs 'make test' on specified git repository. Defaults to a python testing
 // environment.
 def unitTest(String unitTestGitUrl,
-             Map passed_args = [:]) {
-  use_args = [
+             Map customSettings = [:]) {
+  defaultSettings = [
     unitTestGitBranch: "*/master",
     unitTestMakefile: "Makefile",
     unitTestLanguage: "python",
     unitTestContainer: "unit-test-python"
   ]
-  passed_args.each{ entry -> use_args[entry.key] = entry.value }
-  // switch(unitTestLanguage){
+  settings = overwriteDefaultMap(defaultSettings, customSettings)
+  settings.each{entry -> println "$entry.key: $entry.value"}
+  // switch(settings.unitTestLanguage){
   // case("python"):
   //   pipeline {
   //     container(unitTestContainer) {
@@ -75,5 +76,4 @@ def unitTest(String unitTestGitUrl,
   // default:
   //   error("[!] Unit Testing Language not supported.")
   // }
-  use_args.each{entry -> println "$entry.key: $entry.value"}
 }
