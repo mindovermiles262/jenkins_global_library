@@ -57,7 +57,7 @@ def unitTest(String unitTestGitUrl,
     unitTestLanguage: "python",
     unitTestContainer: "unit-test-python"
   ]
-  passed_args.each(entry -> use_args << [entry.key:entry.value])
+  passed_args.each{entry -> use_args << [entry.key:entry.value]}
   // switch(unitTestLanguage){
   // case("python"):
   //   pipeline {
