@@ -12,11 +12,6 @@ pipeline {
     }
   }
   stages {
-    // stage("First Stage") {
-    //   steps {
-    //     sh "cat /etc/*-release"
-    //   }
-    // }
     stage("Unit Testing on external repository") {
       agent {
         kubernetes {
@@ -30,10 +25,10 @@ pipeline {
       }
       steps {
         script {
-          dataeng.unitTest([
-            unitTestGitUrl: "http://github.com/mindovermiles262/linuxacademy-ng", 
-            unitTestGitBranch: "*/pass"
-          ])
+          dataeng.unitTest(
+            "http://github.com/mindovermiles262/linuxacademy-ng", 
+            "*/pass"
+          )
         }
       }
     }
