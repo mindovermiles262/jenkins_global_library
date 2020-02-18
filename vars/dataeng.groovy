@@ -50,11 +50,14 @@ def verifyBranchName(String regexPattern = "(^master\$|^feature/.*|^develop\$)")
 // Runs 'make test' on specified git repository. Defaults to a python testing
 // environment.
 def unitTest(String unitTestGitUrl,
-             Map args = [
-               unitTestGitBranch: "*/master",
-               unitTestMakefile: "Makefile",
-               unitTestLanguage: "python",
-               unitTestContainer: "unit-test-python"]) {
+             Map passed_args = [:]) {
+  use_args = [
+    unitTestGitBranch: "*/master",
+    unitTestMakefile: "Makefile",
+    unitTestLanguage: "python",
+    unitTestContainer: "unit-test-python"
+  ]
+  passed_args.each(entry -> use_args << [entry.key:entry.value])
   // switch(unitTestLanguage){
   // case("python"):
   //   pipeline {
@@ -67,5 +70,5 @@ def unitTest(String unitTestGitUrl,
   // default:
   //   error("[!] Unit Testing Language not supported.")
   // }
-  args.each{entry -> println "$entry.key: $entry.value"}
+  use_args.each{entry -> println "$entry.key: $entry.value"}
 }
