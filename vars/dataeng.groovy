@@ -63,17 +63,16 @@ def unitTest(String unitTestGitUrl,
     unitTestContainer: "unit-test-python"
   ]
   settings = overwriteMap(defaultSettings, customSettings)
-  settings.each{entry -> println "$entry.key: $entry.value"}
-  // switch(settings.unitTestLanguage){
-  // case("python"):
-  //   pipeline {
-  //     container(unitTestContainer) {
-  //       checkout([$class: 'GitSCM', branches: [[name: unitTestGitBranch]],
-  //           userRemoteConfigs: [[url: unitTestGitUrl]]])
-  //       sh "make -f ${unitTestMakefile} test"
-  //     }
-  //   }
-  // default:
-  //   error("[!] Unit Testing Language not supported.")
-  // }
+  switch(settings[unitTestLanguage]){
+  case("python"):
+    pipeline {
+      container(settings[unitTestContainer]) {
+        checkout([$class: 'GitSCM', branches: [[name: settings[unitTestGitBranch]]],
+            userRemoteConfigs: [[url: unitTestGitUrl]]])
+        sh "make -f ${settings[unitTestMakefile]} test"
+      }
+    }
+  default:
+    error("[!] Unit Testing Language not supported.")
+  }
 }
