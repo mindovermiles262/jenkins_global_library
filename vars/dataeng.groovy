@@ -47,6 +47,11 @@ def verifyBranchName(String regexPattern = "(^master\$|^feature/.*|^develop\$)")
   }
 }
 
+def overwriteDefaultMap(Map dflt, Map args) {
+  // do something
+  returnMap = args.each{ entry -> dflt << [entry.key:entry.value] }
+}
+
 // Runs 'make test' on specified git repository. Defaults to a python testing
 // environment.
 def unitTest(String unitTestGitUrl,
@@ -57,7 +62,7 @@ def unitTest(String unitTestGitUrl,
     unitTestLanguage: "python",
     unitTestContainer: "unit-test-python"
   ]
-  passed_args.each{entry -> use_args << [entry.key:entry.value]}
+  passed_args.each{entry -> use_args << [$entry.key:$entry.value]}
   // switch(unitTestLanguage){
   // case("python"):
   //   pipeline {
