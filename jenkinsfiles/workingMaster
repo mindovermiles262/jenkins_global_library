@@ -1,3 +1,5 @@
+@Library('my-jgl')_
+
 pipeline {
   agent {
     kubernetes {
@@ -14,19 +16,27 @@ pipeline {
     // with a branch we know nothing about.
     stage('verify branch') {
       steps {
-        dataeng.verifyBranchName()
+        script {
+          dataeng.verifyBranchName()
+        }
       }
     }
 
     stage('unit test') {
+      agent {
+        kubernetes {
+          containerTemplate {
+            image 'mindovermiles262/pytest:0.1.2'
+            name 'unit-test-python'
+            ttyEnabled true
+            command 'cat'
+          }
+        }
+      }
       steps {
-        dataeng.unitTest(
-          env.GIT_URL,
-          "*/deploy",
-          "Makefile",
-          "python",
-          "unit-test-python-container"
-         )
+        script {
+          dataeng.unitTest(env.GIT_URL)
+        }
       }
     }
   }

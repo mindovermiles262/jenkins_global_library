@@ -43,7 +43,7 @@ def verifyBranchName(String regexPattern = "(^master\$|^feature/.*|^develop\$)")
   if(env.BRANCH_NAME ==~ /${regexPattern}/) {
     println "Branch ${env.BRANCH_NAME} is valid"
   } else {
-    error("[FAILED] Branch ${env.BRANCH_NAME} is INVALID")
+    error("[!] Branch ${env.BRANCH_NAME} is invalid")
   }
 }
 
@@ -53,7 +53,7 @@ def overwriteMap(Map defaultSettings, Map customSettings) {
 }
 
 // Runs 'make test' on specified git repository. Defaults to a python testing
-// environment.
+// environment. Pass a map as the second argument for custom settings
 def unitTest(String unitTestGitUrl,
              Map customSettings = [:]) {
   defaultSettings = [
