@@ -47,9 +47,9 @@ def verifyBranchName(String regexPattern = "(^master\$|^feature/.*|^develop\$)")
   }
 }
 
-def overwriteDefaultMap(Map defaultSettings, Map customSettings) {
-  settings = customSettings.each{ entry -> defaultSettings[entry.key] = entry.value }
-  return settings
+def overwriteMap(Map defaultSettings, Map customSettings) {
+  customSettings.each{ entry -> defaultSettings[entry.key] = entry.value }
+  return defaultSettings
 }
 
 // Runs 'make test' on specified git repository. Defaults to a python testing
@@ -62,7 +62,7 @@ def unitTest(String unitTestGitUrl,
     unitTestLanguage: "python",
     unitTestContainer: "unit-test-python"
   ]
-  settings = overwriteDefaultMap(defaultSettings, customSettings)
+  settings = overwriteMap(defaultSettings, customSettings)
   settings.each{entry -> println "$entry.key: $entry.value"}
   // switch(settings.unitTestLanguage){
   // case("python"):
