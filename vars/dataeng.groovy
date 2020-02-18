@@ -64,7 +64,7 @@ def unitTest(String unitTestGitUrl,
   ]
   settings = overwriteMap(defaultSettings, customSettings)
   settings.each{ e -> println("$e.key => $e.value")}
-  println("$settings["unitTestContainer"]")
+  println("$settings['unitTestContainer']")
   // switch(settings[unitTestLanguage]){
   // case("python"):
   //   pipeline {
